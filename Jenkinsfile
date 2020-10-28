@@ -19,8 +19,10 @@ pipeline {
             }
             steps {
                 checkout scm
-                cd DotnetTemplate.Web
-                sh 'npm i && npm run build && npm t && npm run lint'
+                
+                dir("DotnetTemplate.Web") {
+                    sh 'npm i && npm run build && npm t && npm run lint'
+                }
             }
         }
     }
