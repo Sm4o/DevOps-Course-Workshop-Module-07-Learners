@@ -22,14 +22,17 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       if: ${{ cancelled() }}
       env:
+        SLACK_MESSAGE: Cancelled
         SLACK_TITLE: Joel CI Cancelled
     - name: Slack on fail
       uses: rtCamp/action-slack-notify@master
       if: ${{ failure() }}
       env:
+        SLACK_MESSAGE: Failure
         SLACK_TITLE: Joel CI Failed
     - name: Slack on success
       uses: rtCamp/action-slack-notify@master
       if: ${{ success() }}
       env:
+        SLACK_MESSAGE: Success
         SLACK_TITLE: Joel CI Success
