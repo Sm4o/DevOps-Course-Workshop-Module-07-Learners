@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  docker:
+    image: docker:dind
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+    privileged: true
+    volumes:
+      - "jenkins-docker-certs:/certs/client"
+      - "jenkins-data:/var/jenkins_home"
+    ports:
+      - 2376:2376
+
+  jenkins-blueocean:
+    image: jenkinsci/blueocean
+    environment:
+      DOCKER_TLS_VERIFY: 1
+      DOCKER_CERT_PATH: /certs/client
+      DOCKER_HOST: tcp://docker:2376
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+
+volumes:
+  jenkins-docker-certs:
+  jenkins-data:
