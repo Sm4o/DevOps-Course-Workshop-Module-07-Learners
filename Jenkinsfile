@@ -24,7 +24,17 @@ pipeline {
                 
                 dir("DotnetTemplate.Web") {
                     sh 'npm i && npm run build && npm t && npm run lint'
-                }
+                }                }
+        }
+        post {
+            success {
+                slackSend (color: '#00FF00', message: "Jenkins pipeline successful")
+            }
+            failure {
+                slackSend (color: '#FF0000', message: "Jenkins pipeline failed")
+            }
+            aborted {
+                slackSend (color: '#0000FF', message: "Jenkins pipeline aborted")
             }
         }
     }
