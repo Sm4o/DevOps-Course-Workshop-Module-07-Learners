@@ -3,7 +3,33 @@ on: [push]                      # Will make the workflow run every time you push
 
 jobs:
   build:
+    env:
+      SLACK_CHANNEL: devops
+      SLACK_COLOR: '#3278BD'
+      SLACK_ICON: https://github.com/rtCamp.png?size=48
+      SLACK_USERNAME: JoelSlackBot
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     name: Build and test
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
     - uses: actions/checkout@v2 # Adds a step to checkout the repository code
+    - name: Build and test C#
+      run: dotnet restore && dotnet build && dotnet test
+    - name: Build and test npm
+      run: npm i && npm run build && npm t && npm run lint
+      working-directory: DotnetTemplate.Web
+    - name: Slack on cancel
+      uses: rtCamp/action-slack-notify@master
+      if: ${{ cancelled() }}
+      env:
+        SLACK_TITLE: Joel CI Cancelled
+    - name: Slack on fail
+      uses: rtCamp/action-slack-notify@master
+      if: ${{ failure() }}
+      env:
+        SLACK_TITLE: Joel CI Failed
+    - name: Slack on success
+      uses: rtCamp/action-slack-notify@master
+      if: ${{ success() }}
+      env:
+        SLACK_TITLE: Joel CI Success
