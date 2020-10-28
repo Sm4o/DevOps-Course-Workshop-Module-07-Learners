@@ -18,21 +18,21 @@ jobs:
     - name: Build and test npm
       run: npm i && npm run build && npm t && npm run lint
       working-directory: DotnetTemplate.Web
-    - name: Slack on cancel
-      uses: rtCamp/action-slack-notify@master
-      if: ${{ cancelled() }}
-      env:
-        SLACK_MESSAGE: Cancelled
-        SLACK_TITLE: Joel CI Cancelled
-    - name: Slack on fail
-      uses: rtCamp/action-slack-notify@master
-      if: ${{ failure() }}
-      env:
-        SLACK_MESSAGE: Failure
-        SLACK_TITLE: Joel CI Failed
-    - name: Slack on success
-      uses: rtCamp/action-slack-notify@master
-      if: ${{ success() }}
-      env:
-        SLACK_MESSAGE: Success
-        SLACK_TITLE: Joel CI Success
+    # - name: Slack on cancel
+    #   uses: rtCamp/action-slack-notify@master
+    #   if: ${{ cancelled() }}
+    #   env:
+    #     SLACK_MESSAGE: Cancelled
+    #     SLACK_TITLE: Joel CI Cancelled
+    # - name: Slack on fail
+    #   uses: rtCamp/action-slack-notify@master
+    #   if: ${{ failure() }}
+    #   env:
+    #     SLACK_MESSAGE: Failure
+    #     SLACK_TITLE: Joel CI Failed
+    # - name: Slack on success
+    #   uses: rtCamp/action-slack-notify@master
+    #   if: ${{ success() }}
+    #   env:
+    #     SLACK_MESSAGE: Success
+    #     SLACK_TITLE: Joel CI Success
