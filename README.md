@@ -1,3 +1,5 @@
+![Build](https://github.com/JoelWee/DevOps-Course-Workshop-Module-07-Learners/workflows/Continuous%20Integration/badge.svg)
+
 # Workshop Module 07
 
 This repository is for learners on Corndel's DevOps apprenticeship.
