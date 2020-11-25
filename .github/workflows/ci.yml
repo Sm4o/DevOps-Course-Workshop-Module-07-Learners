@@ -37,7 +37,7 @@ jobs:
     #     SLACK_MESSAGE: Success
     #     SLACK_TITLE: Joel CI Success
   publish:
-    # needs: build
+    needs: build
     name: Publish
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     if: github.ref == 'refs/heads/main'
@@ -53,7 +53,7 @@ jobs:
         default_branch: main
         
   publish_to_heroku:
-    needs: build
+    # needs: build
     name: Publish
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     if: github.ref == 'refs/heads/main'
@@ -65,4 +65,3 @@ jobs:
           heroku_app_name: dotnettemplat
           heroku_email: joel.wee@softwire.com
           usedocker: true
-          docker_heroku_process_type: web
