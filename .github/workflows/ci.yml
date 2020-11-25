@@ -64,3 +64,5 @@ jobs:
           heroku_app_name: dotnettemplat
           heroku_email: joel.wee@softwire.com
           usedocker: true
+          healthcheck: https://dotnettemplat.herokuapp.com/health
+          rollbackonhealthcheckfailed: true
