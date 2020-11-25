@@ -6,7 +6,6 @@ on:
 
 jobs:
   healthcheck_cron:
-    needs: build
     name: Health check cron
     runs-on: ubuntu-latest   
     steps:
