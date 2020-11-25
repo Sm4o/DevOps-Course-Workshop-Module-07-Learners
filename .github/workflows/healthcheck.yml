@@ -6,7 +6,7 @@ on:
 
 jobs:
   healthcheck_cron:
-    name: Health check cron
+    name: Health check cron job
     runs-on: ubuntu-latest   
     steps:
     - uses: jtalk/url-health-check-action@v1.2
