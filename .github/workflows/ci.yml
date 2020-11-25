@@ -65,5 +65,6 @@ jobs:
           heroku_email: joel.wee@softwire.com
           usedocker: true
           healthcheck: https://dotnettemplat.herokuapp.com/health
-          checkstring: "Healthy"
+          checkstring: Healthy
+          delay: 5
           rollbackonhealthcheckfailed: true
