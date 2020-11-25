@@ -43,6 +43,7 @@
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="npm rebuild node-sass" />
     <Exec Command="npm install" />
     <Exec Command="npm run build" />
     <!-- Include the newly-built files in the publish output -->

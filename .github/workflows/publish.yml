@@ -1,0 +1,21 @@
+name: Continuous Delivery
+on: [push]
+  # push:
+  #   branches:
+  #     - main                      # Will make the workflow run every time you push to any branch
+
+jobs:
+  build:
+    name: Build, test
+    runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
+    steps:
+    - uses: actions/checkout@master # Adds a step to checkout the repository code
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: j0elwee/dotnettemplate
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        tag: latest
+        snapshot: true
+        default_branch: main
