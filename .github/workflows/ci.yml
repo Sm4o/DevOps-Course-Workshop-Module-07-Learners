@@ -37,7 +37,7 @@ jobs:
     #     SLACK_MESSAGE: Success
     #     SLACK_TITLE: Joel CI Success
   publish:
-    needs: build
+    # needs: build
     name: Publish
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     if: github.ref == 'refs/heads/main'
@@ -51,3 +51,16 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         snapshot: true
         default_branch: main
+        
+  publish_to_heroku:
+    needs: build
+    name: Publish
+    runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: dotnettemplat
+          heroku_email: joel.wee@softwire.com
