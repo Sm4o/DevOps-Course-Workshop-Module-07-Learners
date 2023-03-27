@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: actions/checkout@master # Adds a step to checkout the repository code
     - name: Publish to Docker Hub
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: j0elwee/dotnettemplate
         username: ${{ secrets.DOCKER_USERNAME }}
